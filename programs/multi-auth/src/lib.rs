@@ -33,11 +33,13 @@ pub mod multi_auth_program {
 
     pub fn charge(
         ctx: Context<ChargeContext>,
+        fee_assert: Pubkey,
+        price: u64,
         src_nft: Pubkey,
         src_token_id: u64,
         src_chain_id: u64,
     ) -> Result<()> {
-        unregister::unregister(ctx, src_nft, src_token_id, src_chain_id)
+        charge::charge(ctx, fee_assert, price, src_nft, src_token_id, src_chain_id)
     }
 
     pub fn add_black_list(
