@@ -6,7 +6,8 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-solana_nft = "J2ypx2SyS9gQm6jYgTetscUZw3HaniqTiqQDj1brNBjN"
+multi-auth = "FtLq7ygXbDBZ57x6iWDhk9MhATNkeqGTBirctTztWT7C"
+solana_nft = "HmTArHZTtLoho3WD8uzbS8iQntTGUe5NpmZA5cwDk5B5"
 
 [registry]
 url = "https://api.apr.dev"

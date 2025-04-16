@@ -2,7 +2,7 @@ use anchor_lang::prelude::*;
 
 // This is your program's public key and it will update
 // automatically when you build the project.
-declare_id!("EG3uhAwhJssBfby1fBaYKEs5dc8kPMQJSfU9A7RkEe86");
+declare_id!("HmTArHZTtLoho3WD8uzbS8iQntTGUe5NpmZA5cwDk5B5");
 
 pub mod contexts;
 
