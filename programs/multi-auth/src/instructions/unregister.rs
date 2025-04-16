@@ -1,9 +1,9 @@
-use anchor_lang::prelude::*;
 use crate::state::*;
+use anchor_lang::prelude::*;
 
 #[derive(Accounts)]
 #[instruction(src_nft: Pubkey, src_token_id: u64, src_chain_id: u64)]
-pub struct UnRegister<'info> {
+pub struct UnRegisterContext<'info> {
     #[account(
         mut,
         close = owner,
@@ -18,7 +18,6 @@ pub struct UnRegister<'info> {
     pub auth_status_account: Account<'info, AuthStatusAccount>,
 
     // pub src_nft: Account<'info, Mint>, // 假设为 SPL Token 的 Mint 账户
-
     /// CHECK:
     /// 该字段由程序初始化时自动设置，通过 PDA 派生确保唯一性
     #[account(mut, signer)]
@@ -28,7 +27,7 @@ pub struct UnRegister<'info> {
 }
 
 pub fn unregister(
-    ctx: Context<UnRegister>,
+    ctx: Context<UnRegisterContext>,
     _src_nft: Pubkey,
     _src_token_id: u64,
     _src_chain_id: u64,

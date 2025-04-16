@@ -12,6 +12,8 @@ pub enum NftManagerError {
     InsufficientFunds,
     #[msg("ReceiverNotMatch")]
     ReceiverNotMatch,
+    #[msg("InvalidNFTOwner")]
+    InvalidNFTOwner,
 }
 
 #[derive(AnchorSerialize, AnchorDeserialize, Clone, PartialEq, Eq)]
@@ -25,9 +27,7 @@ pub enum AuthStatus {
 pub struct AuthStatusAccount {
     pub auth_status: AuthStatus,
     pub src_nft: Pubkey,
-    // pub src_nft: String,
     pub src_token_id: u64,
     pub src_chain_id: u64,
-    pub owner: Pubkey,
-    // pub bump: u8,
+    pub user: Pubkey,
 }

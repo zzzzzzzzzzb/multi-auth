@@ -16,7 +16,7 @@ pub mod mint_nft {
         ctx: Context<CreateToken>,
         nft_name: String,
         nft_symbol: String,
-        nft_uri: String
+        nft_uri: String,
     ) -> Result<()> {
         ctx.accounts.mint_nft(nft_name, nft_symbol, nft_uri)
     }
