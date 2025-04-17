@@ -5,8 +5,8 @@ use anchor_lang::prelude::*;
 #[instruction(user: Pubkey, src_nft: Pubkey, src_token_id: u64, src_chain_id: u64)]
 pub struct RemoveBlackListContext<'info> {
     #[account(
-        mut,
         seeds = [
+            b"to_chain",
             src_nft.as_ref(),
             &src_token_id.to_le_bytes(),
             &src_chain_id.to_le_bytes(),
@@ -16,9 +16,12 @@ pub struct RemoveBlackListContext<'info> {
     pub fee_receivers_in_to_chain: Account<'info, FeeReceiver>,
 
     #[account(
-        mut,
+        init_if_needed,
+        payer = sender,
+        space = 8 + 1 + 32 + 8 + 8 + 32 + 1, // 账户空间计算
         seeds = [
-            user.as_ref(),
+            b"status",
+            sender.key().as_ref(),
             src_nft.as_ref(),
             &src_token_id.to_le_bytes(),
             &src_chain_id.to_le_bytes(),
@@ -29,7 +32,7 @@ pub struct RemoveBlackListContext<'info> {
 
     /// CHECK:
     /// 该字段由程序初始化时自动设置，通过 PDA 派生确保唯一性
-    #[account(signer)]
+    #[account(mut, signer)]
     pub sender: AccountInfo<'info>,
 
     pub system_program: Program<'info, System>,

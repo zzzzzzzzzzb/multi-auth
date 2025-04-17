@@ -7,8 +7,6 @@ use {
     },
 };
 
-const FEE_FACTOR: u64 = 10_000;
-
 #[derive(Accounts)]
 #[instruction(src_nft: Pubkey, src_token_id: u64, src_chain_id: u64)]
 pub struct ChargeContext<'info> {
@@ -17,6 +15,7 @@ pub struct ChargeContext<'info> {
         payer = sender,
         space = 8 + 32 + 8 + 8 + 8 + 1 + 8 + 1, // 账户空间计算
         seeds = [
+            b"data",
             src_nft.as_ref(),
             &src_token_id.to_le_bytes(),
             &src_chain_id.to_le_bytes(),
@@ -30,6 +29,7 @@ pub struct ChargeContext<'info> {
         payer = sender,
         space = 8 + 32 + 8 + 1, // 账户空间计算
         seeds = [
+            b"to_chain",
             src_nft.as_ref(),
             &src_token_id.to_le_bytes(),
             &src_chain_id.to_le_bytes(),

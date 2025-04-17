@@ -1,5 +1,9 @@
 use anchor_lang::prelude::*;
 
+pub const FEE_FACTOR: u64 = 10_000;
+
+pub const CHAIN_ID: u64 = 1; // TODO
+
 #[error_code]
 pub enum NftManagerError {
     #[msg("Auth rejected")]
@@ -10,10 +14,16 @@ pub enum NftManagerError {
     MathOverflow,
     #[msg("InsufficientFunds")]
     InsufficientFunds,
-    #[msg("ReceiverNotMatch")]
+    #[msg("Receiver does not match")]
     ReceiverNotMatch,
-    #[msg("InvalidNFTOwner")]
+    #[msg("Invalid nft owner")]
     InvalidNFTOwner,
+    #[msg("Invalid chain id")]
+    InvalidChainID,
+    #[msg("NftManager: feeRatio too high")]
+    InvalidReeRatio,
+    #[msg("NftManager: invalid fee receiver")]
+    InvalidFeeReceiver,
 }
 
 #[derive(AnchorSerialize, AnchorDeserialize, Clone, PartialEq, Eq)]

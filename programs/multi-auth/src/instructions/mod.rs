@@ -1,7 +1,10 @@
 pub mod add_black_list;
+pub mod approve_in_src_chain;
 pub mod charge;
+pub mod claim;
 pub mod register;
 pub mod remove_black_list;
+pub mod transfer_wrapper;
 pub mod unregister;
 
 pub use add_black_list::*;

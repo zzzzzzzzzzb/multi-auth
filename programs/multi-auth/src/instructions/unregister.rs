@@ -8,6 +8,7 @@ pub struct UnRegisterContext<'info> {
         mut,
         close = owner,
         seeds = [
+            b"status",
             owner.key().as_ref(),
             src_nft.as_ref(),
             &src_token_id.to_le_bytes(),

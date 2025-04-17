@@ -9,6 +9,7 @@ pub struct RegisterContext<'info> {
         payer = owner,
         space = 8 + 1 + 32 + 8 + 8 + 32 + 1, // 账户空间计算
         seeds = [
+            b"status",
             owner.key().as_ref(),
             src_nft.as_ref(),
             &src_token_id.to_le_bytes(),
