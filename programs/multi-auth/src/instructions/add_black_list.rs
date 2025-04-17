@@ -17,9 +17,7 @@ pub struct AddBlackListContext<'info> {
     pub fee_receivers_in_to_chain: Account<'info, FeeReceiver>,
 
     #[account(
-        init_if_needed,
-        payer = payer,
-        space = 8 + 1 + 32 + 8 + 8 + 32 + 1, // 账户空间计算
+        mut,
         seeds = [
             user.as_ref(),
             src_nft.as_ref(),
