@@ -5,6 +5,7 @@ use anchor_lang::prelude::*;
 #[instruction(user: Pubkey, src_nft: Pubkey, src_token_id: u64, src_chain_id: u64)]
 pub struct RemoveBlackListContext<'info> {
     #[account(
+        mut,
         seeds = [
             src_nft.as_ref(),
             &src_token_id.to_le_bytes(),

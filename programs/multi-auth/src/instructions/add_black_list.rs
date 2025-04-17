@@ -6,6 +6,7 @@ use anchor_lang::prelude::*;
 pub struct AddBlackListContext<'info> {
     // TODO
     #[account(
+        mut,
         seeds = [
             src_nft.as_ref(),
             &src_token_id.to_le_bytes(),
