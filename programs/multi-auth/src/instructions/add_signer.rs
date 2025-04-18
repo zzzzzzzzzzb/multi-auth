@@ -3,8 +3,6 @@ use anchor_lang::prelude::*;
 use anchor_lang::solana_program::keccak::hashv as keccak;
 use anchor_lang::solana_program::secp256k1_recover::secp256k1_recover;
 
-use anchor_spl::token::Approve;
-
 #[derive(Accounts)]
 #[instruction(approve_signer: [u8; 32])]
 pub struct AddSignerContext<'info> {
@@ -26,8 +24,6 @@ pub struct AddSignerContext<'info> {
     pub system_program: Program<'info, System>,
 }
 
-
-
 #[derive(Accounts)]
 pub struct VerifySignerContext {}
 
@@ -38,8 +34,6 @@ pub fn add_signer(ctx: Context<AddSignerContext>, new_signer: [u8; 32]) -> Resul
     Ok(())
 }
 
-
-
 pub fn verify_signature(
     _ctx: Context<VerifySignerContext>,
     signer: [u8; 32],
@@ -47,7 +41,11 @@ pub fn verify_signature(
     signature: [u8; 64],
 ) -> Result<()> {
     let msg_hash = keccak(&[msg.as_ref()]);
-    let pk = secp256k1_recover(msg_hash.as_ref(), 0, signature.as_ref()).map_err(|err| NftManagerError::InvalidSignature)?;
-    require!(keccak(&[pk.0.as_ref()]).0 == signer, NftManagerError::InvalidSigner);
+    let pk = secp256k1_recover(msg_hash.as_ref(), 0, signature.as_ref())
+        .map_err(|err| NftManagerError::InvalidSignature)?;
+    require!(
+        keccak(&[pk.0.as_ref()]).0 == signer,
+        NftManagerError::InvalidSigner
+    );
     Ok(())
 }

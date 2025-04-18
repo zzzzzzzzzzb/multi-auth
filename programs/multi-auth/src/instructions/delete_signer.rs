@@ -1,6 +1,6 @@
+use crate::state::ApproveSigner;
 use crate::state::*;
 use anchor_lang::prelude::*;
-use crate::state::ApproveSigner;
 
 #[derive(Accounts)]
 #[instruction(approve_signer: [u8; 32])]

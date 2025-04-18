@@ -20,6 +20,8 @@ pub enum NftManagerError {
     InvalidNFTOwner,
     #[msg("Invalid chain id")]
     InvalidChainID,
+    #[msg("Invalid to_chain id")]
+    InvalidToChainID,
     #[msg("NftManager: feeRatio too high")]
     InvalidReeRatio,
     #[msg("NftManager: invalid fee receiver")]
@@ -28,6 +30,8 @@ pub enum NftManagerError {
     InvalidSignature,
     #[msg("NftManager: invalid signer")]
     InvalidSigner,
+    #[msg("NftManager: height check failed")]
+    HeightCheckFailed,
 }
 
 #[derive(AnchorSerialize, AnchorDeserialize, Clone, PartialEq, Eq)]

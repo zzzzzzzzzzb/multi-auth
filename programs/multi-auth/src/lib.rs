@@ -11,6 +11,7 @@ declare_id!("FtLq7ygXbDBZ57x6iWDhk9MhATNkeqGTBirctTztWT7C");
 
 #[program]
 pub mod multi_auth_program {
+    use crate::instructions::approve_in_src_chain::ApproveInSrcChainContext;
     use super::*;
 
     pub fn register(
@@ -60,5 +61,68 @@ pub mod multi_auth_program {
         src_chain_id: u64,
     ) -> Result<()> {
         remove_black_list::remove_black_list(ctx, user, src_nft, src_token_id, src_chain_id)
+    }
+    
+    pub fn add_signer(
+        ctx: Context<AddSignerContext>,
+        signer: [u8; 32],
+    ) ->Result<()> {
+        add_signer::add_signer(ctx, signer)
+    }
+
+    pub fn remove_signer(
+        ctx: Context<DeleteSignerContext>,
+        signer: [u8; 32],
+    ) ->Result<()> {
+        delete_signer::delete_signer(ctx)
+    }
+    
+    pub fn approve_in_src_chain(
+        ctx: Context<ApproveInSrcChainContext>,
+        nft: Pubkey,
+        token_id: u64,
+        to_chain_id: u64,
+        auth_opt: bool,
+        fee_ratio: u64,
+    ) -> Result<()> {
+        approve_in_src_chain::approve_in_src_chain(ctx, nft, token_id, to_chain_id, auth_opt, fee_ratio)
+    }
+
+    pub fn transfer_wrapper(
+        ctx: Context<TransferWrapperContext>,
+        nft: Pubkey,
+        token_id: u64,
+        to: Pubkey,
+        to_chains_id: Vec<u64>,
+    ) -> Result<()> {
+        transfer_wrapper::transfer_wrapper(ctx, nft, token_id, to, to_chains_id)
+    }
+
+    pub fn claim(
+        ctx: Context<ClaimContext>,
+        nft: Pubkey,
+        token_id: u64,
+        to_chains_id: Vec<u64>,
+    ) -> Result<()> {
+        claim::claim(ctx, nft, token_id, to_chains_id)
+    }
+    
+    pub fn approve_in_to_chain(
+        ctx: Context<ApproveInToChainContext>,
+        fee_receiver: Pubkey,
+        height: u64,
+        signature: [u8; 64],
+    ) -> Result<()> {
+        approve_in_to_chain::approve_in_to_chain(ctx, fee_receiver, height, signature)
+    }
+
+    pub fn approve_local(
+        ctx: Context<ApproveLocalContext>,
+        nft: Pubkey,
+        token_id: u64,
+        auth_opt: bool,
+        fee_ratio: u64,
+    ) -> Result<()> {
+        approve_local::approve_local(ctx, nft, token_id, auth_opt, fee_ratio)
     }
 }
