@@ -24,6 +24,10 @@ pub enum NftManagerError {
     InvalidReeRatio,
     #[msg("NftManager: invalid fee receiver")]
     InvalidFeeReceiver,
+    #[msg("NftManager: invalid signature")]
+    InvalidSignature,
+    #[msg("NftManager: invalid signer")]
+    InvalidSigner,
 }
 
 #[derive(AnchorSerialize, AnchorDeserialize, Clone, PartialEq, Eq)]
