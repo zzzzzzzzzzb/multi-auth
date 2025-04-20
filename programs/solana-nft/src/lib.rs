@@ -2,14 +2,14 @@ use anchor_lang::prelude::*;
 
 // This is your program's public key and it will update
 // automatically when you build the project.
-declare_id!("HmTArHZTtLoho3WD8uzbS8iQntTGUe5NpmZA5cwDk5B5");
+declare_id!("8kZKFT7hPBnvSweKuzipWuPo5X4TLBJraEWikm5hN4S9");
 
 pub mod contexts;
 
 pub use contexts::*;
 
 #[program]
-pub mod mint_nft {
+pub mod solana_nft {
     use super::*;
 
     pub fn mint_nft(

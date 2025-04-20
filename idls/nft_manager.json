@@ -1,0 +1,2461 @@
+{
+  "address": "AF9dYWSbe2T2EXqjCJNKRC2tLiPkiaduv1G4sTkqjaea",
+  "metadata": {
+    "name": "nft_manager",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "add_black_list",
+      "discriminator": [
+        47,
+        23,
+        246,
+        195,
+        176,
+        252,
+        181,
+        221
+      ],
+      "accounts": [
+        {
+          "name": "fee_receivers_in_to_chain",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  95,
+                  99,
+                  104,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "src_token_id"
+              },
+              {
+                "kind": "arg",
+                "path": "src_chain_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "auth_status_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  116,
+                  97,
+                  116,
+                  117,
+                  115
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "sender"
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "src_token_id"
+              },
+              {
+                "kind": "arg",
+                "path": "src_chain_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "sender",
+          "docs": [
+            "该字段由程序初始化时自动设置，通过 PDA 派生确保唯一性"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "user",
+          "type": "pubkey"
+        },
+        {
+          "name": "src_nft",
+          "type": "pubkey"
+        },
+        {
+          "name": "src_token_id",
+          "type": "u64"
+        },
+        {
+          "name": "src_chain_id",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "add_signer",
+      "discriminator": [
+        76,
+        104,
+        61,
+        51,
+        179,
+        139,
+        47,
+        222
+      ],
+      "accounts": [
+        {
+          "name": "signers_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  105,
+                  103,
+                  110,
+                  101,
+                  114,
+                  115
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "approve_signer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "signer",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "approve_in_src_chain",
+      "discriminator": [
+        0,
+        77,
+        239,
+        178,
+        123,
+        13,
+        147,
+        65
+      ],
+      "accounts": [
+        {
+          "name": "nft_mint",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  105,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "token_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "token_account",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "sender"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "nft_mint"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "auth_datas_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  97,
+                  116,
+                  97
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "token_id"
+              },
+              {
+                "kind": "arg",
+                "path": "src_chain_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fee_receivers_in_src_chain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  114,
+                  99,
+                  95,
+                  99,
+                  104,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "token_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "sender",
+          "docs": [
+            "该字段由程序初始化时自动设置，通过 PDA 派生确保唯一性"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "nft",
+          "type": "pubkey"
+        },
+        {
+          "name": "token_id",
+          "type": "u64"
+        },
+        {
+          "name": "to_chain_id",
+          "type": "u64"
+        },
+        {
+          "name": "auth_opt",
+          "type": "bool"
+        },
+        {
+          "name": "fee_ratio",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "approve_in_to_chain",
+      "discriminator": [
+        40,
+        79,
+        180,
+        28,
+        180,
+        235,
+        106,
+        122
+      ],
+      "accounts": [
+        {
+          "name": "auth_datas_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  97,
+                  116,
+                  97
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "token_id"
+              },
+              {
+                "kind": "arg",
+                "path": "src_chain_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fee_receivers_in_to_chain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  95,
+                  99,
+                  104,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "token_id"
+              },
+              {
+                "kind": "arg",
+                "path": "src_chain_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "signers_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  105,
+                  103,
+                  110,
+                  101,
+                  114,
+                  115
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "approve_signer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "sender",
+          "docs": [
+            "该字段由程序初始化时自动设置，通过 PDA 派生确保唯一性"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "fee_receiver",
+          "type": "pubkey"
+        },
+        {
+          "name": "height",
+          "type": "u64"
+        },
+        {
+          "name": "signature",
+          "type": {
+            "array": [
+              "u8",
+              64
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "approve_local",
+      "discriminator": [
+        186,
+        49,
+        94,
+        36,
+        125,
+        113,
+        64,
+        0
+      ],
+      "accounts": [
+        {
+          "name": "mint_account",
+          "writable": true
+        },
+        {
+          "name": "token_account",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "sender"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint_account"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "auth_datas_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  97,
+                  116,
+                  97
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "token_id"
+              },
+              {
+                "kind": "arg",
+                "path": "src_chain_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fee_receivers_in_src_chain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  114,
+                  99,
+                  95,
+                  99,
+                  104,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "token_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fee_receivers_in_to_chain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  95,
+                  99,
+                  104,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "token_id"
+              },
+              {
+                "kind": "arg",
+                "path": "src_chain_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "sender_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "sender"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint_account"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "sender",
+          "docs": [
+            "该字段由程序初始化时自动设置，通过 PDA 派生确保唯一性"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "nft",
+          "type": "pubkey"
+        },
+        {
+          "name": "token_id",
+          "type": "u64"
+        },
+        {
+          "name": "auth_opt",
+          "type": "bool"
+        },
+        {
+          "name": "fee_ratio",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "charge",
+      "discriminator": [
+        26,
+        55,
+        197,
+        209,
+        93,
+        77,
+        242,
+        15
+      ],
+      "accounts": [
+        {
+          "name": "auth_datas_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  97,
+                  116,
+                  97
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "src_token_id"
+              },
+              {
+                "kind": "arg",
+                "path": "src_chain_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fee_receivers_in_to_chain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  95,
+                  99,
+                  104,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "src_token_id"
+              },
+              {
+                "kind": "arg",
+                "path": "src_chain_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "sender",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "recipient"
+        },
+        {
+          "name": "mint_account",
+          "writable": true
+        },
+        {
+          "name": "sender_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "sender"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint_account"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "recipient_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "recipient"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint_account"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "fee_assert",
+          "type": "pubkey"
+        },
+        {
+          "name": "price",
+          "type": "u64"
+        },
+        {
+          "name": "src_nft",
+          "type": "pubkey"
+        },
+        {
+          "name": "src_token_id",
+          "type": "u64"
+        },
+        {
+          "name": "src_chain_id",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "claim",
+      "discriminator": [
+        62,
+        198,
+        214,
+        193,
+        213,
+        159,
+        108,
+        210
+      ],
+      "accounts": [
+        {
+          "name": "auth_datas_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  97,
+                  116,
+                  97
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "token_id"
+              },
+              {
+                "kind": "arg",
+                "path": "chain_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fee_receivers_in_src_chain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  114,
+                  99,
+                  95,
+                  99,
+                  104,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "token_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fee_receivers_in_to_chain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  95,
+                  99,
+                  104,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "token_id"
+              },
+              {
+                "kind": "arg",
+                "path": "chain_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "sender",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "recipient"
+        },
+        {
+          "name": "mint_account",
+          "writable": true
+        },
+        {
+          "name": "token_account",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "sender"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint_account"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "sender_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "sender"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint_account"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "recipient_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "recipient"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint_account"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "nft",
+          "type": "pubkey"
+        },
+        {
+          "name": "token_id",
+          "type": "u64"
+        },
+        {
+          "name": "to_chains_id",
+          "type": {
+            "vec": "u64"
+          }
+        }
+      ]
+    },
+    {
+      "name": "register",
+      "discriminator": [
+        211,
+        124,
+        67,
+        15,
+        211,
+        194,
+        178,
+        240
+      ],
+      "accounts": [
+        {
+          "name": "auth_status_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  116,
+                  97,
+                  116,
+                  117,
+                  115
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "src_token_id"
+              },
+              {
+                "kind": "arg",
+                "path": "src_chain_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "owner",
+          "docs": [
+            "该字段由程序初始化时自动设置，通过 PDA 派生确保唯一性"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "src_nft",
+          "type": "pubkey"
+        },
+        {
+          "name": "src_token_id",
+          "type": "u64"
+        },
+        {
+          "name": "src_chain_id",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "remove_black_list",
+      "discriminator": [
+        65,
+        196,
+        27,
+        22,
+        78,
+        129,
+        34,
+        245
+      ],
+      "accounts": [
+        {
+          "name": "fee_receivers_in_to_chain",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  95,
+                  99,
+                  104,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "src_token_id"
+              },
+              {
+                "kind": "arg",
+                "path": "src_chain_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "auth_status_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  116,
+                  97,
+                  116,
+                  117,
+                  115
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "sender"
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "src_token_id"
+              },
+              {
+                "kind": "arg",
+                "path": "src_chain_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "sender",
+          "docs": [
+            "该字段由程序初始化时自动设置，通过 PDA 派生确保唯一性"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "user",
+          "type": "pubkey"
+        },
+        {
+          "name": "src_nft",
+          "type": "pubkey"
+        },
+        {
+          "name": "src_token_id",
+          "type": "u64"
+        },
+        {
+          "name": "src_chain_id",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "remove_signer",
+      "discriminator": [
+        212,
+        32,
+        97,
+        47,
+        61,
+        67,
+        184,
+        141
+      ],
+      "accounts": [
+        {
+          "name": "signers_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  105,
+                  103,
+                  110,
+                  101,
+                  114,
+                  115
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "approve_signer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "signer",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "transfer_wrapper",
+      "discriminator": [
+        190,
+        160,
+        166,
+        218,
+        250,
+        151,
+        105,
+        10
+      ],
+      "accounts": [
+        {
+          "name": "auth_datas_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  97,
+                  116,
+                  97
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "token_id"
+              },
+              {
+                "kind": "arg",
+                "path": "chain_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fee_receivers_in_src_chain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  114,
+                  99,
+                  95,
+                  99,
+                  104,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "token_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "fee_receivers_in_to_chain",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  116,
+                  111,
+                  95,
+                  99,
+                  104,
+                  97,
+                  105,
+                  110
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "token_id"
+              },
+              {
+                "kind": "arg",
+                "path": "chain_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "sender",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "recipient"
+        },
+        {
+          "name": "mint_account",
+          "writable": true
+        },
+        {
+          "name": "sender_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "sender"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint_account"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "recipient_token_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "recipient"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  6,
+                  221,
+                  246,
+                  225,
+                  215,
+                  101,
+                  161,
+                  147,
+                  217,
+                  203,
+                  225,
+                  70,
+                  206,
+                  235,
+                  121,
+                  172,
+                  28,
+                  180,
+                  133,
+                  237,
+                  95,
+                  91,
+                  55,
+                  145,
+                  58,
+                  140,
+                  245,
+                  133,
+                  126,
+                  255,
+                  0,
+                  169
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "mint_account"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                140,
+                151,
+                37,
+                143,
+                78,
+                36,
+                137,
+                241,
+                187,
+                61,
+                16,
+                41,
+                20,
+                142,
+                13,
+                131,
+                11,
+                90,
+                19,
+                153,
+                218,
+                255,
+                16,
+                132,
+                4,
+                142,
+                123,
+                216,
+                219,
+                233,
+                248,
+                89
+              ]
+            }
+          }
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "associated_token_program",
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "nft",
+          "type": "pubkey"
+        },
+        {
+          "name": "token_id",
+          "type": "u64"
+        },
+        {
+          "name": "to",
+          "type": "pubkey"
+        },
+        {
+          "name": "to_chains_id",
+          "type": {
+            "vec": "u64"
+          }
+        }
+      ]
+    },
+    {
+      "name": "unregister",
+      "discriminator": [
+        143,
+        28,
+        144,
+        79,
+        140,
+        220,
+        228,
+        248
+      ],
+      "accounts": [
+        {
+          "name": "auth_status_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  115,
+                  116,
+                  97,
+                  116,
+                  117,
+                  115
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "arg",
+                "path": "src_nft"
+              },
+              {
+                "kind": "arg",
+                "path": "src_token_id"
+              },
+              {
+                "kind": "arg",
+                "path": "src_chain_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "owner",
+          "docs": [
+            "该字段由程序初始化时自动设置，通过 PDA 派生确保唯一性"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "src_nft",
+          "type": "pubkey"
+        },
+        {
+          "name": "src_token_id",
+          "type": "u64"
+        },
+        {
+          "name": "src_chain_id",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "ApproveSigner",
+      "discriminator": [
+        27,
+        200,
+        134,
+        208,
+        53,
+        250,
+        25,
+        159
+      ]
+    },
+    {
+      "name": "AuthData",
+      "discriminator": [
+        32,
+        150,
+        234,
+        100,
+        189,
+        18,
+        77,
+        250
+      ]
+    },
+    {
+      "name": "AuthStatusAccount",
+      "discriminator": [
+        23,
+        93,
+        166,
+        66,
+        173,
+        190,
+        99,
+        96
+      ]
+    },
+    {
+      "name": "FeeReceiver",
+      "discriminator": [
+        217,
+        123,
+        124,
+        75,
+        212,
+        179,
+        171,
+        135
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "AuthRejected",
+      "msg": "Auth rejected"
+    },
+    {
+      "code": 6001,
+      "name": "ChargeInvalidReceiver",
+      "msg": "Charge invalid receiver"
+    },
+    {
+      "code": 6002,
+      "name": "MathOverflow",
+      "msg": "Math overflow"
+    },
+    {
+      "code": 6003,
+      "name": "InsufficientFunds",
+      "msg": "InsufficientFunds"
+    },
+    {
+      "code": 6004,
+      "name": "ReceiverNotMatch",
+      "msg": "Receiver does not match"
+    },
+    {
+      "code": 6005,
+      "name": "InvalidNFTOwner",
+      "msg": "Invalid nft owner"
+    },
+    {
+      "code": 6006,
+      "name": "InvalidChainID",
+      "msg": "Invalid chain id"
+    },
+    {
+      "code": 6007,
+      "name": "InvalidToChainID",
+      "msg": "Invalid to_chain id"
+    },
+    {
+      "code": 6008,
+      "name": "InvalidReeRatio",
+      "msg": "NftManager: feeRatio too high"
+    },
+    {
+      "code": 6009,
+      "name": "InvalidFeeReceiver",
+      "msg": "NftManager: invalid fee receiver"
+    },
+    {
+      "code": 6010,
+      "name": "InvalidSignature",
+      "msg": "NftManager: invalid signature"
+    },
+    {
+      "code": 6011,
+      "name": "InvalidSigner",
+      "msg": "NftManager: invalid signer"
+    },
+    {
+      "code": 6012,
+      "name": "HeightCheckFailed",
+      "msg": "NftManager: height check failed"
+    }
+  ],
+  "types": [
+    {
+      "name": "ApproveSigner",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "approve_signer",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "AuthData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "nft_address",
+            "type": "pubkey"
+          },
+          {
+            "name": "token_id",
+            "type": "u64"
+          },
+          {
+            "name": "src_chain_id",
+            "type": "u64"
+          },
+          {
+            "name": "to_chain_id",
+            "type": "u64"
+          },
+          {
+            "name": "auth_opt",
+            "type": "bool"
+          },
+          {
+            "name": "fee_ratio",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AuthStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Uninitialized"
+          },
+          {
+            "name": "Authed"
+          },
+          {
+            "name": "Rejected"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AuthStatusAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "auth_status",
+            "type": {
+              "defined": {
+                "name": "AuthStatus"
+              }
+            }
+          },
+          {
+            "name": "src_nft",
+            "type": "pubkey"
+          },
+          {
+            "name": "src_token_id",
+            "type": "u64"
+          },
+          {
+            "name": "src_chain_id",
+            "type": "u64"
+          },
+          {
+            "name": "user",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "FeeReceiver",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "receiver",
+            "type": "pubkey"
+          },
+          {
+            "name": "height",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ]
+}

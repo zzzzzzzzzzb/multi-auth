@@ -899,7 +899,15 @@ dependencies = [
 ]
 
 [[package]]
-name = "multi-auth"
+name = "nft-manager"
+version = "0.1.0"
+dependencies = [
+ "anchor-lang",
+ "anchor-spl",
+]
+
+[[package]]
+name = "nft-template"
 version = "0.1.0"
 dependencies = [
  "anchor-lang",

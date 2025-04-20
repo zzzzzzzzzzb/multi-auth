@@ -7,12 +7,12 @@ use state::*;
 
 // This is your program's public key and it will update
 // automatically when you build the project.
-declare_id!("FtLq7ygXbDBZ57x6iWDhk9MhATNkeqGTBirctTztWT7C");
+declare_id!("AF9dYWSbe2T2EXqjCJNKRC2tLiPkiaduv1G4sTkqjaea");
 
 #[program]
-pub mod multi_auth_program {
-    use crate::instructions::approve_in_src_chain::ApproveInSrcChainContext;
+pub mod nft_manager {
     use super::*;
+    use crate::instructions::approve_in_src_chain::ApproveInSrcChainContext;
 
     pub fn register(
         ctx: Context<RegisterContext>,
@@ -62,21 +62,15 @@ pub mod multi_auth_program {
     ) -> Result<()> {
         remove_black_list::remove_black_list(ctx, user, src_nft, src_token_id, src_chain_id)
     }
-    
-    pub fn add_signer(
-        ctx: Context<AddSignerContext>,
-        signer: [u8; 32],
-    ) ->Result<()> {
+
+    pub fn add_signer(ctx: Context<AddSignerContext>, signer: [u8; 32]) -> Result<()> {
         add_signer::add_signer(ctx, signer)
     }
 
-    pub fn remove_signer(
-        ctx: Context<DeleteSignerContext>,
-        signer: [u8; 32],
-    ) ->Result<()> {
+    pub fn remove_signer(ctx: Context<DeleteSignerContext>, signer: [u8; 32]) -> Result<()> {
         delete_signer::delete_signer(ctx)
     }
-    
+
     pub fn approve_in_src_chain(
         ctx: Context<ApproveInSrcChainContext>,
         nft: Pubkey,
@@ -85,7 +79,14 @@ pub mod multi_auth_program {
         auth_opt: bool,
         fee_ratio: u64,
     ) -> Result<()> {
-        approve_in_src_chain::approve_in_src_chain(ctx, nft, token_id, to_chain_id, auth_opt, fee_ratio)
+        approve_in_src_chain::approve_in_src_chain(
+            ctx,
+            nft,
+            token_id,
+            to_chain_id,
+            auth_opt,
+            fee_ratio,
+        )
     }
 
     pub fn transfer_wrapper(
@@ -106,7 +107,7 @@ pub mod multi_auth_program {
     ) -> Result<()> {
         claim::claim(ctx, nft, token_id, to_chains_id)
     }
-    
+
     pub fn approve_in_to_chain(
         ctx: Context<ApproveInToChainContext>,
         fee_receiver: Pubkey,
