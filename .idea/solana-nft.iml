@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/programs/solana-nft/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/programs/nft-manager/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/programs/nft-template/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/programs/nft-uri-template/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
