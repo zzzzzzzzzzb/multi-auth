@@ -12,7 +12,6 @@ declare_id!("AF9dYWSbe2T2EXqjCJNKRC2tLiPkiaduv1G4sTkqjaea");
 #[program]
 pub mod nft_manager {
     use super::*;
-    use crate::instructions::approve_in_src_chain::ApproveInSrcChainContext;
 
     pub fn register(
         ctx: Context<RegisterContext>,
