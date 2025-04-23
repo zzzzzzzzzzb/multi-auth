@@ -1,8 +1,10 @@
 use crate::state::*;
 use {
-    anchor_lang::prelude::*,
+    anchor_lang::{
+        prelude::*,
+        solana_program::{program::invoke_signed, system_instruction},
+    },
     anchor_spl::{
-        associated_token::AssociatedToken,
         token::{transfer, Mint, Token, TokenAccount, Transfer},
     },
 };
@@ -43,23 +45,11 @@ pub struct ChargeContext<'info> {
     pub recipient: SystemAccount<'info>,
 
     #[account(mut)]
-    pub mint_account: Account<'info, Mint>,
-    #[account(
-        mut,
-        associated_token::mint = mint_account,
-        associated_token::authority = sender,
-    )]
     pub sender_token_account: Account<'info, TokenAccount>,
-    #[account(
-        init_if_needed,
-        payer = sender,
-        associated_token::mint = mint_account,
-        associated_token::authority = recipient,
-    )]
+    #[account(mut)]
     pub recipient_token_account: Account<'info, TokenAccount>,
 
     pub token_program: Program<'info, Token>,
-    pub associated_token_program: Program<'info, AssociatedToken>,
     pub system_program: Program<'info, System>,
 }
 
@@ -97,16 +87,19 @@ pub fn charge(
             NftManagerError::InsufficientFunds
         );
         if fee_receiver.receiver != Pubkey::new_from_array([0u8; 32]) {
-            **ctx
-                .accounts
-                .sender
-                .to_account_info()
-                .try_borrow_mut_lamports()? -= fee_amount;
-            **ctx
-                .accounts
-                .recipient
-                .to_account_info()
-                .try_borrow_mut_lamports()? += fee_amount;
+            invoke_signed(
+                &system_instruction::transfer(
+                    ctx.accounts.sender.key,
+                    ctx.accounts.recipient.key,
+                    fee_amount,
+                ),
+                &[
+                    ctx.accounts.sender.to_account_info(),
+                    ctx.accounts.recipient.to_account_info(),
+                    ctx.accounts.system_program.to_account_info(),
+                ],
+                &[],
+            )?;
         }
     } else {
         //SPL 代币
@@ -127,7 +120,7 @@ pub fn charge(
                         authority: ctx.accounts.sender.to_account_info(),
                     },
                 ),
-                fee_amount * 10u64.pow(ctx.accounts.mint_account.decimals as u32), // Transfer amount, adjust for decimals
+                fee_amount,
             )?;
         }
     }
