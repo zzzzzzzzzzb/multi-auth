@@ -127,7 +127,6 @@ pub fn mint_with_auth(
     let auth_status = &mut ctx.accounts.auth_status_account;
     let fee_ratio = auth_data.fee_ratio;
 
-    let _receiver;
     match auth_status.auth_status {
         AuthStatus::Authed => {
             require!(auth_data.auth_opt, NftTemplateError::AuthOPTIsFalse);
