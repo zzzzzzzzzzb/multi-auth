@@ -8,7 +8,7 @@ skip-lint = false
 nft_manager = "AF9dYWSbe2T2EXqjCJNKRC2tLiPkiaduv1G4sTkqjaea"
 nft_template = "3QcwJAXvEFgp7ehUGj4YhK5d3n3MZoDp4Sgxe8wJ9cf8"
 solana_nft = "8kZKFT7hPBnvSweKuzipWuPo5X4TLBJraEWikm5hN4S9"
-nft-uri-template = "CvwbcAmiPvUwyvCaFM24K23RuKPckLbUvSFj1KxxwP9Y"
+nft_uri_template = "CvwbcAmiPvUwyvCaFM24K23RuKPckLbUvSFj1KxxwP9Y"
 
 [registry]
 url = "https://api.apr.dev"

@@ -13,6 +13,7 @@ use {
     },
 };
 
+// TODO remove
 declare_program!(nft_manager);
 use nft_manager::accounts::{AuthData, AuthStatusAccount};
 use nft_manager::types::AuthStatus;
@@ -25,10 +26,11 @@ pub struct UpdateURIContext<'info> {
     pub auth_status_account: Account<'info, AuthStatusAccount>,
     #[account()]
     pub auth_datas_account: Account<'info, AuthData>,
-    #[account(mut)]
+    #[account()]
     pub authed_info_account: Account<'info, AuthedInfo>,
     #[account()]
     pub signers_account: Account<'info, AuthedSigner>,
+    /// CHECK: Validate address by deriving pda
     #[account(mut)]
     pub metadata_account: UncheckedAccount<'info>,
     #[account(mut)]

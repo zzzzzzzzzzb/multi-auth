@@ -88,9 +88,7 @@ pub struct MintContext<'info> {
     )]
     pub fee_receivers_in_src_chain: Account<'info, FeeReceiver>,
     #[account(mut)]
-    pub receiver: AccountInfo<'info>,
-    #[account(mut)]
-    pub nft_manager_recv: AccountInfo<'info>,
+    pub receiver: SystemAccount<'info>,
 
     #[account(mut)]
     pub sender_token_account: Account<'info, TokenAccount>,
