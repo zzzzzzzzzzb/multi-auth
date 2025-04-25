@@ -70,7 +70,7 @@ pub mod nft_uri_template {
         symbol: String,
         uri: String,
     ) -> Result<()> {
-        update_uri::update_uri(ctx, name, symbol, uri)
+        mint::update_uri(ctx, name, symbol, uri)
     }
 
     pub fn update_uri_sig(
@@ -81,7 +81,7 @@ pub mod nft_uri_template {
         authed_signer: Pubkey,
         sig: [u8; 64],
     ) -> Result<()> {
-        update_uri::update_uri_sig(ctx, name, symbol, uri, authed_signer, sig)
+        mint::update_uri_sig(ctx, name, symbol, uri, authed_signer, sig)
     }
 
     pub fn init_admin_and_receiver(
